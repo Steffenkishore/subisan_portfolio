@@ -6,6 +6,15 @@
 /* ------------------------------
    1. Typing animation
 -------------------------------- */
+html {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* Internet Explorer */
+}
+
+html::-webkit-scrollbar {
+  display: none; /* Chrome, Edge, Safari */
+}
+
 .typing-text {
   display: inline-block;
   width: 0;

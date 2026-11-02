@@ -23,7 +23,8 @@ const projects = {
         "Interactive dashboard",
       ],
       icon: "dashboard",
-      github: "",
+      github:
+        "https://github.com/subisan5081/Vehicle-Fuel-Consumption-Dashboard-Excel-",
       demo: "",
     },
     {
@@ -39,7 +40,7 @@ const projects = {
         "Transaction management",
       ],
       icon: "database",
-      github: "",
+      github: "https://github.com/subisan5081/Banking-Management-System-MySQL",
       demo: "",
     },
     {
@@ -55,7 +56,8 @@ const projects = {
         "Dynamic reporting",
       ],
       icon: "automation",
-      github: "",
+      github:
+        "https://github.com/subisan5081/-Excel-Automation-Toolkit-for-Data-Management-",
       demo: "",
     },
   ],
