@@ -35,7 +35,7 @@ export default function Hero() {
           </p>
 
           <h1 className="text-5xl font-extrabold leading-[1.1] tracking-tight sm:text-6xl lg:text-7xl">
-            {profile.firstName}
+            {profile.firstName} R
             {/* <span className="mt-2 block text-yellow-400">{profile.role}.</span> */}
 
             <h1 className="text-4xl font-bold  text-yellow-400 sm:text-5xl lg:text-6xl">
