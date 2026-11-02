@@ -111,13 +111,14 @@ export default function Contact() {
   });
 
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState("INITIAL");
 
   const [status, setStatus] = useState("");
 
   
 const onSubmit = async (event) => {
   event.preventDefault();
+  setIsSubmitting("LOADING")
 
   const form = event.currentTarget;
   const formData = new FormData(form);
@@ -126,7 +127,6 @@ const onSubmit = async (event) => {
 
   formData.append("subject", "New Portfolio Contact Message");
 
-  setIsSubmitting(true);
   setStatus("");
 
   try {
@@ -139,14 +139,22 @@ const onSubmit = async (event) => {
 
     if (response.ok && data.success) {
       setStatus("Message sent successfully!");
+      setIsSubmitting("SUCCESS");
       form.reset();
+      setFormData({
+        name: "",
+        email: "",
+        subject: "",
+        message: "",
+      });
     } else {
       setStatus("Failed to send message. Please try again.");
+      setIsSubmitting("FAILED");
     }
   } catch {
     setStatus("Something went wrong. Please try again.");
   } finally {
-    setIsSubmitting(false);
+    setIsSubmitting("FAILED");
   }
 };
 
@@ -162,14 +170,6 @@ const onSubmit = async (event) => {
     if (status) setStatus("");
   }
 
-  function handleSubmit(event) {
-    event.preventDefault();
-
-    // Web3Forms integration will be added here later.
-    setStatus(
-      "Your form is ready, but email delivery is not enabled yet. Web3Forms integration is required to send your message.",
-    );
-  }
 
   const inputClass =
     "mt-2 w-full rounded-xl border border-white/10 bg-[#0b0b0b] px-4 py-3.5 text-sm text-white outline-none placeholder:text-gray-600 transition focus:border-yellow-400/60 focus:ring-1 focus:ring-yellow-400/20";
@@ -374,7 +374,7 @@ const onSubmit = async (event) => {
                 type="submit"
                 className="group flex w-full items-center justify-center gap-3 rounded-xl bg-yellow-400 px-6 py-4 text-sm font-bold text-black transition hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-offset-2 focus:ring-offset-[#111111]"
               >
-                Prepare Message
+                {isSubmitting === 'LOADING' ? "Sending Message...." : "Prepare Message"}
                 <SendIcon />
               </button>
              
