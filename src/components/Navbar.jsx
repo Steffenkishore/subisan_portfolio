@@ -24,7 +24,9 @@ export default function Navbar() {
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 sm:px-8 lg:px-16">
         {/* Logo */}
         <a href="#home" className="text-2xl font-extrabold tracking-tight">
-          <span className="text-yellow-400 font-bold">My Portfolio</span>
+          <span className="text-yellow-400 font-bold">
+            Subisan
+          </span>
         </a>
 
         {/* Desktop navigation */}
@@ -41,7 +43,6 @@ export default function Navbar() {
         </div>
 
         {/* Resume button */}
-
 
         {/* Mobile menu button */}
         <button
@@ -102,8 +103,6 @@ export default function Navbar() {
                   {link.name}
                 </a>
               ))}
-
-              
             </div>
           </motion.div>
         )}

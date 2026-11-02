@@ -2,6 +2,7 @@ import { useState } from "react";
 import contact from "../assets/data/contact";
 import { motion } from "motion/react";
 
+
 function MailIcon() {
   return (
     <svg
@@ -109,7 +110,46 @@ export default function Contact() {
     message: "",
   });
 
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const [status, setStatus] = useState("");
+
+  
+const onSubmit = async (event) => {
+  event.preventDefault();
+
+  const form = event.currentTarget;
+  const formData = new FormData(form);
+
+  formData.append("access_key", "027d12eb-0a31-41c9-a9a2-e3d77d5553f2");
+
+  formData.append("subject", "New Portfolio Contact Message");
+
+  setIsSubmitting(true);
+  setStatus("");
+
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      setStatus("Message sent successfully!");
+      form.reset();
+    } else {
+      setStatus("Failed to send message. Please try again.");
+    }
+  } catch {
+    setStatus("Something went wrong. Please try again.");
+  } finally {
+    setIsSubmitting(false);
+  }
+};
+
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -139,7 +179,7 @@ export default function Contact() {
       id="contact"
       className="scroll-mt-20 bg-[#0b0b0b] px-5 py-20 text-white sm:px-8 sm:py-24 lg:px-16 lg:py-28"
     >
-      <motion.div
+      <motiondiv
         className="mx-auto max-w-7xl"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -242,7 +282,7 @@ export default function Contact() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={onSubmit} className="space-y-5">
               {/* Name */}
               <div>
                 <label
@@ -337,6 +377,7 @@ export default function Contact() {
                 Prepare Message
                 <SendIcon />
               </button>
+             
 
               {status && (
                 <p
@@ -362,7 +403,7 @@ export default function Contact() {
             data.
           </p>
         </div>
-      </motion.div>
+      </motiondiv>
     </section>
   );
 }
